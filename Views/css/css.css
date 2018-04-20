@@ -1,0 +1,21 @@
+.myform{
+	margin-top: 5%;
+}
+
+.img-login{
+	width: 214px;
+	height: 214px;
+	border: 2px solid #007bff;
+}
+
+.img-logo{
+	width: 55px;
+	height: 55px;
+	border: 1px solid white;
+}
+
+.img-register{
+	width: 150px;
+	height: 150px;
+	border: 2px solid #007bff;
+}
