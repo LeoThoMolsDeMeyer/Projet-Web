@@ -13,7 +13,7 @@ class Db{
 	        die('Erreur de connexion à la bd : ' . $e->getMessage());
 		}
 	}
-
+	
 	public static function getInstance(){
 		if (is_null(self::$instance)) {
 			self::$instance = new Db();
@@ -56,5 +56,37 @@ class Db{
 			return $row;
 		}
 	}
-}
+
+	public function getLoginInfo($mail){
+		
+		$query='SELECT password, user_id FROM members WHERE mail = :mail';
+		$ps = $this->_db->prepare($query);
+		$ps->bindValue(':mail',$mail);
+        $ps->execute();
+		if($ps->rowcount()!=0){
+			$row=$ps->fetch();
+			return $row;
+		}
+		
+		// if ($data['password'] == md5($_POST['password'])){ // Acces OK !
+
+		//     $_SESSION['mail'] = $data['mail'];
+		//     $message = '<p>Bienvenue , 
+		// 		vous êtes maintenant connecté!</p>
+		// 		<p>Cliquez <a href="./index.php">ici</a> 
+		// 		pour revenir à la page d accueil</p>';  
+	
+		// }else{ // Acces pas OK !
+	
+	    // 	$message = '<p>Une erreur s\'est produite 
+	    // 	pendant votre identification.<br /> Le mot de passe ou le pseudo 
+        //     entré n\'est pas correcte.</p><p>Cliquez <a href="./connexion.php">ici</a> 
+	    // 	pour revenir à la page précédente
+	 	// 	<br /><br />Cliquez <a href="./index.php">ici</a> 
+		//     pour revenir à la page d accueil</p>';
+		// }
+ 	    // $query->CloseCursor();
+		}
+	}
+
 ?>

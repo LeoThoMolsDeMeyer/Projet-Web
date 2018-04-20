@@ -7,9 +7,14 @@ class ProfileController{
 	}
 
 	public function run(){
+
+		if (!isset($_SESSION['connected'])){
+			header('Location: index.php?action=login');
+			die;
+		}
+		
 		//the number of getProfile() is the id of the member active
 		$data = $this->db->getProfile(1);
-        var_dump ($data);
 		require_once('Views/profile.php');
 	}
 }

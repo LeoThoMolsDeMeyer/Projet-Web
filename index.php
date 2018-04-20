@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 define('VIEWS_PATH', 'views/');
 
 require_once('models/Db.class.php');
@@ -15,7 +17,7 @@ switch ($action) {
 		break;
 	case 'login':
 		require_once('controllers/LoginController.php');
-		$controller = new LoginController();
+		$controller = new LoginController($db);
 		break;
 	case 'profile':
 		require_once('controllers/ProfileController.php');
@@ -29,6 +31,10 @@ switch ($action) {
 		require_once('controllers/CalendarController.php');
 		$controller = new CalendarController($db);
 		break;
+	case 'logout':
+		require_once('controllers/LogoutController.php');
+		$controller = new LogoutController();
+		break;
 	default:
 		require_once('controllers/HomeController.php');
 		$controller = new HomeController();
@@ -36,8 +42,11 @@ switch ($action) {
 }
 
 require_once('Views/header.php');
-//require_once(VIEWS_PATH.'guestNav.php');
-require_once('Views/userNav.php');
+if (isset($_SESSION['connected'])){
+	require_once('Views/userNav.php');
+}else{
+	require_once('Views/guestNav.php');
+}
 $controller->run();
 require_once('Views/footer.php');
 ?>

@@ -24,6 +24,9 @@
 				<li class="nav-item">
 					<a class="nav-link" href="index.php?action=profile">Mon Compte</a>
 				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="index.php?action=logout">Déconnexion</a>
+				</li>
 			</ul>
 		</div>
 	</nav>
